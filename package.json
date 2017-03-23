@@ -1,6 +1,6 @@
 {
   "name": "oauth2_client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OAuth2 client to get and verify access token",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,10 @@
   "homepage": "https://github.com/twhtanghk/oauth2_client#readme",
   "devDependencies": {
     "coffee-script": "^1.12.3"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "lodash": "^4.17.4",
+    "needle": "^1.5.2"
   }
 }
