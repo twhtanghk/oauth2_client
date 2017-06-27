@@ -1,10 +1,10 @@
 {
   "name": "oauth2_client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "OAuth2 client to get and verify access token",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/bootstrap.test.coffee test/unit/*.coffee"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/twhtanghk/oauth2_client#readme",
   "devDependencies": {
-    "coffee-script": "^1.12.3"
+    "coffee-script": "^1.12.3",
+    "mocha": "^3.4.2"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

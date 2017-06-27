@@ -3,25 +3,35 @@ Promise = require 'bluebird'
 needle = Promise.promisifyAll require 'needle'
 
 module.exports =
-  # get token for Resource Owner Password Credentials Grant
-  # url: authorization server url to get token
-  # client:
-  #   id: registered client id
-  #   secret: client secret
-  # user:
-  #   id: registered user id
-  #   secret: user password
-  # scope: [ "User", "Mobile"]
-  token: (url, client, user, scope) ->
+  # 1. get token for Resource Owner Password Credentials Grant
+  #   url: authorization server url to get token
+  #   client:
+  #     id: registered client id
+  #     secret: client secret
+  #   user:
+  #     id: registered user id
+  #     secret: user password
+  #   scope: [ "User", "Mobile"]
+  # 2. get token for Client Credentials Grant
+  #   url: authroization server url to get token
+  #   client:
+  #     id: registered client id
+  #     secret: client secret
+  token: (url, client, user = null, scope = null) ->
     opts =
       'Content-Type': 'application/x-www-form-urlencoded'
       username: client.id
       password: client.secret
-    data =
-      grant_type: 'password'
-      username: user.id
-      password: user.secret
-      scope: scope.join(' ')
+    data = {}
+    if user?
+      data =
+        grant_type: 'password'
+        username: user.id
+        password: user.secret
+        scope: scope.join(' ')
+    else
+      data =
+        grant_type: 'client_credentials'
     needle
       .postAsync url, data, opts
       .then (res) ->
