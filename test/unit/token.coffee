@@ -18,9 +18,11 @@ describe 'oauth2', ->
       .token process.env.TOKENURL, clients[0], user, scope
       .then (token) ->
         oauth2.verify process.env.VERIFYURL, scope, token
+      .then console.log
 
   it 'client credentials grant', ->
     oauth2
       .token process.env.TOKENURL, clients[1]
       .then (token) ->
         oauth2.verify process.env.VERIFYURL, scope, token
+      .then console.log
